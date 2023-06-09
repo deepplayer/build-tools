@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 cross_tools=/root/loongson/cross-tools
 mkdir -p build-gcc-pass2 && cd build-gcc-pass2
 ../gcc/configure --target=loongarch64-linux-gnu --prefix=${cross_tools} --with-sysroot=${cross_tools}/sysroot --with-build-sysroot=${cross_tools}/sysroot --enable-languages=c,c++,fortran --enable-checking=release

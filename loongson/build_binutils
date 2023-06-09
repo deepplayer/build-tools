@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # binutils build-essential texinfo bison
 cross_tools=/root/loongson/cross-tools
 mkdir -p build-binutils && cd build-binutils
