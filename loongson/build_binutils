@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+# binutils build-essential texinfo bison
+cross_tools=/root/loongson/cross-tools
+mkdir -p build-binutils && cd build-binutils
+../binutils-2.39_git/configure --prefix=/ --target=loongarch64-linux-gnu --disable-werror
+make -j `nproc` && make DESTDIR=${cross_tools} install

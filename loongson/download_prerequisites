@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+wget https://github.com/loongson/build-tools/releases/download/2022.09.06/binutils-2.39_git.tar.gz
+wget https://github.com/loongson/build-tools/releases/download/2022.09.06/glibc-2.37_git.tar.gz
+wget https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.0.tar.xz
+git clone git://sourceware.org/git/gcc.git
+
+tar -xzvf binutils-2.39_git.tar.gz
+tar -xzvf glibc-2.37_git.tar.gz
+tar -xvf linux-6.0.tar.xz
+
+pushd gcc
+contrib/download_prerequisites
+ls -d gmp mpfr mpc isl
+find gmp/ mpfr/ mpc/ isl/ -name config.guess -type f -exec sh -c 'chmod +w {}; cp -v config.guess {}' \;
+find gmp/ mpfr/ mpc/ isl/ -name config.sub -type f -exec sh -c 'chmod +w {}; cp -v config.sub {}' \;
+popd

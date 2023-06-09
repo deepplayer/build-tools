@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+tar -xvf /linux-6.0.tar.xz
+cross_tools=/root/loongson/cross-tools
+cd linux-6.0
+make mrproper
+make ARCH=loongarch INSTALL_HDR_PATH=dest headers_install
+find dest/include -name '.*' -delete
+mkdir -pv ${cross_tools}/sysroot/usr/include
+cp -rv dest/include/* ${cross_tools}/sysroot/usr/include

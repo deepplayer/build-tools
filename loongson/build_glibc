@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+cross_tools=/root/loongson/cross-tools
+export PATH=${cross_tools}/bin:$PATH
+mkdir -p build-glibc && cd build-glibc
+../glibc-2.37_git/configure --prefix=/usr --host=loongarch64-linux-gnu --with-headers=${cross_tools}/sysroot/usr/include
+mkdir ${cross_tools}/sysroot/usr/lib64 && ln -sf usr/lib64 ${cross_tools}/sysroot/lib64
+mkdir ${cross_tools}/sysroot/usr/lib && ln -sf usr/lib ${cross_tools}/sysroot/lib
+make -j `nproc`
+make install_root=${cross_tools}/sysroot MAKEINFO=: install

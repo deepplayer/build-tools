@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+cross_tools=/root/loongson/cross-tools
+export PATH=${cross_tools}/bin:$PATH
+mkdir -p build-gcc-pass1 && cd build-gcc-pass1
+../gcc/configure --prefix=${cross_tools} --target=loongarch64-linux-gnu --with-sysroot=${cross_tools}/sysroot --disable-nls --disable-shared --without-headers --with-newlib --disable-libatomic --disable-threads --enable-languages=c
+make all-gcc all-target-libgcc -j `nproc`
+make install-gcc install-target-libgcc
